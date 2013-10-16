@@ -402,7 +402,6 @@ d-i base-installer/includes string ${EXTRA_PACKAGES}
 d-i base-installer/excludes string ${EXCLUDE_PACKAGES}
 
 ## MISC
-d-i netcfg/choose_interface select eth0
 d-i mirror/http/proxy string ${APT_PROXY}
 
 ## PARTITIONING
