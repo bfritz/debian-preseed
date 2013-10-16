@@ -2,8 +2,10 @@
 
 set -e
 
-OS=wheezy
-ARCH=amd64
+[ ! -r "$1" ] && (echo "usage: $0 <config>"; exit 1)
+
+CONF="$1"
+source "$CONF"
 
 TMPDIR=/tmp
 PXE_DIR="$(pwd)/pxe"
@@ -59,10 +61,6 @@ function start_dnsmasq() {
 }
 
 
-[ ! -r "$1" ] && (echo "usage: $0 <config>"; exit 1)
-
-CONF="$1"
-source "$CONF"
 download_installer
 setup_pxe $1
 start_dnsmasq $1
