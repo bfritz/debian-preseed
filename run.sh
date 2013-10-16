@@ -44,9 +44,9 @@ EOF"
 }
 
 function setup_pxe() {
-    local SYSLINUX=pxe/preseed.cfg
     template $PRESEED_FILE > $PXE_PRESEED_FILE
     echo "Wrote preseed file to $PXE_PRESEED_FILE"
+    local SYSLINUX="$PXE_DIR/pxelinux.cfg/default"
 
     template config/preseed.cfg.in > $SYSLINUX
     echo "Wrote syslinux PXE configuration to $SYSLINUX"
