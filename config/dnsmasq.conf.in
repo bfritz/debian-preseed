@@ -1,0 +1,10 @@
+interface=${IFACE}
+bind-interfaces
+dhcp-range=${DHCP_RANGE}
+dhcp-boot=pxelinux.0
+enable-tftp
+tftp-root=${PXE_DIR}
+user=${RUN_AS}
+keep-in-foreground
+log-facility=-
+log-queries

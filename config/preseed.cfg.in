@@ -1,0 +1,4 @@
+default install
+label install
+  kernel debian-installer/amd64/linux
+  append initrd=debian-installer/${ARCH}/initrd.gz auto=true priority=critical vga=788 preseed/url=tftp://${TFTP_SERVER}/${PXE_PRESEED_FILE}
