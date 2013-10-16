@@ -10,7 +10,7 @@ source "$CONF"
 TMPDIR=/tmp
 PXE_DIR="$(pwd)/pxe"
 RUN_AS="$(whoami)"
-PXE_PRESEED_FILE="$PXE_DIR/$OS.preseed"
+PXE_PRESEED_FILE="$OS.preseed"
 
 
 function download_installer() {
@@ -44,9 +44,9 @@ EOF"
 }
 
 function setup_pxe() {
-    template $PRESEED_FILE > $PXE_PRESEED_FILE
-    echo "Wrote preseed file to $PXE_PRESEED_FILE"
     local SYSLINUX="$PXE_DIR/pxelinux.cfg/default"
+    template $PRESEED_FILE > "$PXE_DIR/$PXE_PRESEED_FILE"
+    echo "Wrote preseed file to $PXE_DIR/$PXE_PRESEED_FILE"
 
     template config/preseed.cfg.in > $SYSLINUX
     echo "Wrote syslinux PXE configuration to $SYSLINUX"
