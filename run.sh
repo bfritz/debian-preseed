@@ -50,6 +50,17 @@ function setup_pxe() {
 
     template config/preseed.cfg.in > $SYSLINUX
     echo "Wrote syslinux PXE configuration to $SYSLINUX"
+
+    # FIXME: don't want template() because it executes $(commands),
+    # but the head/tail solution is a hack
+    #template config/partitioner.in > "$PXE_DIR/partitioner"
+    head -n4 config/partitioner.in > "$PXE_DIR/partitioner"
+    cat <<EOF >> "$PXE_DIR/partitioner"
+PV_NAME=$PV_NAME
+FS=$FS
+EOF
+    tail -n+4 config/partitioner.in >> "$PXE_DIR/partitioner"
+    echo "Wrote partitioning script to $PXE_DIR/partitioner"
 }
 
 function start_dnsmasq() {
